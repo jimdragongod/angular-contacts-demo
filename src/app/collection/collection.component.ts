@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ContactService } from '../shared/contact.service';
+import {Contact} from '../shared/contact';
 
 @Component({
   selector: 'app-collection',
@@ -7,7 +8,7 @@ import { ContactService } from '../shared/contact.service';
   styleUrls: ['./collection.component.css']
 })
 export class CollectionComponent implements OnInit {
-  collections: any = [];
+  collections: Array<Contact> = [];
   contacts: any = {};
 
   constructor(private _constactService: ContactService) {}

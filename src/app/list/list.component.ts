@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ContactService } from '../shared/contact.service';
+import {Contact} from '../shared/contact';
 
 @Component({
   selector: 'app-list',
@@ -8,7 +9,7 @@ import { ContactService } from '../shared/contact.service';
   styleUrls: ['./list.component.css']
 })
 export class ListComponent implements OnInit {
-  contacts: {};
+  contacts: Array<Contact> = [];
   private isAdd = 1;
 
   constructor(

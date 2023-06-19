@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/observable/of';
+import { Observable, of } from 'rxjs';
 
 @Injectable()
 export class ActivatedRouteStubService {
-  params: Observable<any> = Observable.of({});
+  params: Observable<any> = of({});
 }

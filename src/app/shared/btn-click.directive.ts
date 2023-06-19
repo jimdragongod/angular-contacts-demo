@@ -1,4 +1,4 @@
-import { Directive, ElementRef, Input, Renderer, HostListener } from '@angular/core';
+import { Directive, ElementRef, Input, HostListener } from '@angular/core';
 
 const ClickingBackColor = '#eee';
 
@@ -9,7 +9,7 @@ const ClickingBackColor = '#eee';
 export class BtnClickDirective {
   private el: HTMLElement;
   private timer: any;
-  private animating: boolean;
+  private animating: boolean =false;
   constructor(el: ElementRef) {
     this.el = el.nativeElement;
     this.el.style.transition = 'background-color .2s ease-out';

@@ -16,11 +16,12 @@ const TEST_DATA = {
   'collection': 1
 };
 
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/observable/of';
+import { Observable, of } from 'rxjs';
+import {Contact} from '../shared/contact';
+
 const FakeContactService = {
-  getContactById(id: any): Observable<any> {
-    return Observable.of(TEST_DATA);
+  getContactById(id: string): Observable<Array<Contact>> {
+    return of([TEST_DATA]);
   }
 };
 
@@ -70,7 +71,7 @@ describe('DetailComponent', () => {
   it('test component template content', () => {
     const el: HTMLElement = fixture.debugElement.nativeElement;
     // 获取并检查 DOM 元素的内容
-    const tmplValue = el.querySelector('.detail-info>li:first-child>p:nth-child(2)').textContent;
+    const tmplValue = el.querySelector('.detail-info>li:first-child>p:nth-child(2)')?.textContent;
     expect(tmplValue).toBe('189-0000-1001');
   });
 

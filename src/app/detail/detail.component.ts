@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ContactService } from '../shared/contact.service';
+import {Contact} from '../shared/contact';
 
 @Component({
   selector: 'app-detail',
@@ -8,8 +9,8 @@ import { ContactService } from '../shared/contact.service';
   styleUrls: ['./detail.component.css']
 })
 export class DetailComponent implements OnInit, OnDestroy {
-  contact_id: number;
-  detail: any = {};
+  contact_id: string ="";
+  detail: Contact = Contact.DUMMY_INSTANCE;
   contacts: any = {};
   private sub: any;
 
@@ -38,9 +39,9 @@ export class DetailComponent implements OnInit, OnDestroy {
     this._constactService.collectContact(this.detail);
   }
 
-  getById(id: number) {
+  getById(id: string) {
     this._constactService.getContactById(id).subscribe(data => {
-      this.detail = data;
+      this.detail = data[0];
     });
   }
 }

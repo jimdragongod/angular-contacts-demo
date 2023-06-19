@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { ContactService } from '../shared/contact.service';
 import { UtilService } from '../shared/util.service';
+import {Contact} from '../shared/contact';
 
 @Component({
   selector: 'app-edit',
@@ -10,11 +11,11 @@ import { UtilService } from '../shared/util.service';
   styleUrls: ['./edit.component.css']
 })
 export class EditComponent implements OnInit {
-  isAdd: boolean;
-  operateTitle: string;
-  editId: number;
+  isAdd: boolean = false;
+  operateTitle: string = "";
+  editId: string = "";
   contacts: any = {};
-  contact: any = {};
+  contact: Contact  =  Contact.DUMMY_INSTANCE;
   isName = false;
   isPhoneNum = false;
   isAddr = false;
@@ -76,9 +77,9 @@ export class EditComponent implements OnInit {
     });
   }
 
-  getContactDetailById(id: number) {
+  getContactDetailById(id: string) {
     this._constactService.getContactById(id).subscribe(data => {
-      this.contact = data;
+      this.contact = data[0];
     });
   }
 

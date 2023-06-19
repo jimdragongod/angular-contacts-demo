@@ -1,34 +1,30 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/observable/throw';
-import 'rxjs/add/observable/of';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/catch';
-import 'rxjs/add/operator/do';
+import { Observable,pipe,of,throwError,map,catchError } from 'rxjs';
+import {Contact} from './contact';
+
 
 const CONTACT_URL = '/assets/contacts.json';
 
-let _contacts;
+let _contacts:Array<Contact>|Contact;
 
 @Injectable()
 export class ContactService {
   constructor(private http: HttpClient) {}
 
-  getContactsData(opts?: any) {
-    let source;
+  getContactsData(opts?: any) :Observable<Array<Contact>> {
+    let source:Observable<Contact[]>;
     if (Array.isArray(_contacts)) {
-      source = Observable.of(_contacts);
+      source = of(_contacts);
     } else {
       source = this.http.request('get', CONTACT_URL)
-        .do(data => _contacts = data)
-        .catch(this.handleError);
+        .pipe(map(data => _contacts = <Array<Contact>>data),catchError(this.handleError));
     }
-    return source.map(data => this.filter(data, opts));
+    return source.pipe(map(data => this.filter(data, opts)));
   }
 
-  getContactById(id) {
-    id = parseInt(id, 10);
+  getContactById(idStr:string) {
+    let id:number = parseInt(idStr, 10);
     return this.getContactsData({ id: id });
   }
 
@@ -75,26 +71,27 @@ export class ContactService {
     }
   }
 
-  filter(data, opts) {
+  filter(data:Array<Contact>, opts:Contact) {
+    const filteredResultArr: Array<Contact> = [];
+
     // tslint:disable-next-line:curly
     if (!opts) return data;
     if (opts.id) {
       for (let i = 0; i < data.length; i++) {
         if (data[i].id === opts.id) {
-          data = data[i];
+          filteredResultArr.push(data[i]);
         }
       }
     }
     if (opts.collection) {
-      const temp: any = [];
+
       for (let i = 0; i < data.length; i++) {
         if (data[i].collection === opts.collection) {
-          temp.push(data[i]);
+          filteredResultArr.push(data[i]);
         }
       }
-      data = temp;
     }
-    return data;
+    return filteredResultArr;
   }
 
   handleError(err: HttpErrorResponse) {
@@ -107,6 +104,6 @@ export class ContactService {
       errMsg = `${err.status} - ${err.statusText}，详细错误：${err.error}`;
     }
     console.error(errMsg); // 打印到控制台
-    return Observable.throw(errMsg);
+    return throwError(errMsg);
   }
 }
