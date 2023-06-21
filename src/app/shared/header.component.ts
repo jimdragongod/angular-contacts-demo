@@ -2,15 +2,19 @@ import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   // tslint:disable-next-line:component-selector
-  selector: 'my-header',
+  selector: 'app-my-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  @Input() title: string="";
-  @Input() isShowCreateButton: boolean =false;
+  @Input() title = "";
+  @Input() isShowCreateButton =false;
 
-  constructor() {}
+  constructor() {
+    console.info("HeaderComponent constructor()");
+  }
 
-  ngOnInit() {}
+  ngOnInit() {
+    console.info("HeaderComponent ngOnInit()");
+  }
 }

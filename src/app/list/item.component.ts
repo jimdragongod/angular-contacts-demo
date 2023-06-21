@@ -1,5 +1,4 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Router } from '@angular/router';
 import {Contact} from '../shared/contact';
 
 @Component({
@@ -11,9 +10,13 @@ export class ListItemComponent implements OnInit {
   @Input() contact: Contact = Contact.DUMMY_INSTANCE;
   @Output() routerNavigate = new EventEmitter<number>();
 
-  constructor() {}
+  constructor() {
+    console.info("ListItemComponent constructor()");
+  }
 
-  ngOnInit() {}
+  ngOnInit() {
+    console.info("ListItemComponent ngOnInit()");
+  }
 
   goDetail(num: number) {
     this.routerNavigate.emit(num);

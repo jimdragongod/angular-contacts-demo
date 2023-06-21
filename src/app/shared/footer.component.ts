@@ -3,7 +3,7 @@ import { Location } from '@angular/common';
 
 @Component({
   // tslint:disable-next-line:component-selector
-  selector: 'my-footer',
+  selector: 'app-my-footer',
   templateUrl: './footer.component.html',
   styleUrls: ['./footer.component.css']
 })

@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ContactService } from '../shared/contact.service';
 import {Contact} from '../shared/contact';
+import {Subscription} from 'rxjs/internal/Subscription';
 
 @Component({
   selector: 'app-detail',
@@ -9,15 +10,15 @@ import {Contact} from '../shared/contact';
   styleUrls: ['./detail.component.css']
 })
 export class DetailComponent implements OnInit, OnDestroy {
-  contact_id: string ="";
+  contact_id ="";
   detail: Contact = Contact.DUMMY_INSTANCE;
-  contacts: any = {};
-  private sub: any;
+  // contacts: any = {};
+  private sub: Subscription|undefined = undefined;
 
   constructor(
     private _router: Router,
     private _activatedRoute: ActivatedRoute,
-    private _constactService: ContactService
+    private _contactService: ContactService
   ) {}
 
   ngOnInit() {
@@ -28,7 +29,9 @@ export class DetailComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.sub.unsubscribe();
+    if(this.sub !== undefined){
+      this.sub.unsubscribe();
+    }
   }
 
   editContact() {
@@ -36,11 +39,11 @@ export class DetailComponent implements OnInit, OnDestroy {
   }
 
   collectTheContact() {
-    this._constactService.collectContact(this.detail);
+    this._contactService.collectContact(this.detail);
   }
 
   getById(id: string) {
-    this._constactService.getContactById(id).subscribe(data => {
+    this._contactService.getContactById(id).subscribe(data => {
       this.detail = data[0];
     });
   }

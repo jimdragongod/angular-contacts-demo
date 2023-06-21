@@ -1,7 +1,7 @@
-<a (click)="goDetail(contact.id)">
-  <img class="icon-head" src="/assets/images/Iverson.jpg">
+<a id="contactId_{{contact.id}}" (click)="goDetail(contact.id)" (keydown)="goDetail(contact.id)" tabindex="-1">
+  <img class="icon-head" src="/assets/images/Iverson.jpg" alt="Contact's Photo">
   <div class="contact-info">
-    <label class="contact-name">{{ contact.name }}</label>
+    <label for="contactId_{{contact.id}}" class="contact-name">{{ contact.name }}</label>
     <span class="contact-tel">{{ contact.telNum | phone }}</span>
     <i class="contact-to-detail"></i>
   </div>

@@ -4,12 +4,12 @@
       <i class="icon-back"></i>
       所有联系人
     </a>
-    <a class="edit" (click)="editContact()">编辑</a>
+    <a class="edit" (click)="editContact()" (keydown)="editContact()" tabindex="-1">编辑</a>
     <div class="name-and-icon">
-      <img src="/assets/images/Iverson.jpg">
+      <img src="/assets/images/Iverson.jpg" alt="Contact's Photo"/>
       <span class="contact-name">
         {{ detail.name }}
-        <i [ngClass]="{collect: detail.collection == 0, collected: detail.collection == 1}" (click)="collectTheContact()"></i>
+        <i [ngClass]="{collect: detail.collection === 0, collected: detail.collection === 1}" (click)="collectTheContact()" (keydown)="collectTheContact()" tabindex="-1"></i>
       </span>
     </div>
   </div>

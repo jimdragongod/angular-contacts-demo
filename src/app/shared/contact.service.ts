@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Observable,pipe,of,throwError,map,catchError } from 'rxjs';
+import { Observable,of,throwError,map,catchError } from 'rxjs';
 import {Contact} from './contact';
 
 
@@ -12,7 +12,7 @@ let _contacts:Array<Contact>|Contact;
 export class ContactService {
   constructor(private http: HttpClient) {}
 
-  getContactsData(opts?: any) :Observable<Array<Contact>> {
+  getContactsData(opts?: { id?:number,collection?:number }) :Observable<Array<Contact>> {
     let source:Observable<Contact[]>;
     if (Array.isArray(_contacts)) {
       source = of(_contacts);
@@ -24,7 +24,7 @@ export class ContactService {
   }
 
   getContactById(idStr:string) {
-    let id:number = parseInt(idStr, 10);
+    const id:number = parseInt(idStr, 10);
     return this.getContactsData({ id: id });
   }
 
@@ -32,7 +32,7 @@ export class ContactService {
     return this.getContactsData({ collection: 1 });
   }
 
-  addContact(obj: any = {}) {
+  addContact(obj: Contact) {
     if (!Array.isArray(_contacts)) {
       console.error('请刷新重试');
       return;
@@ -41,7 +41,7 @@ export class ContactService {
     _contacts.push(obj);
   }
 
-  editContact(obj: any) {
+  editContact(obj: Contact) {
     // tslint:disable-next-line:curly
     if (!obj) return;
     if (!Array.isArray(_contacts)) {
@@ -57,7 +57,7 @@ export class ContactService {
     }
   }
 
-  collectContact(obj: any = {}) {
+  collectContact(obj: Contact) {
     if (!Array.isArray(_contacts)) {
       console.error('请刷新重试');
       return;
@@ -71,7 +71,7 @@ export class ContactService {
     }
   }
 
-  filter(data:Array<Contact>, opts:Contact) {
+  filter(data:Array<Contact>, opts?: { id?: number, collection?: number }) {
     const filteredResultArr: Array<Contact> = [];
 
     // tslint:disable-next-line:curly

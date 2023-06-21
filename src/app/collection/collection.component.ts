@@ -9,12 +9,12 @@ import {Contact} from '../shared/contact';
 })
 export class CollectionComponent implements OnInit {
   collections: Array<Contact> = [];
-  contacts: any = {};
+  // contacts: any = {};
 
-  constructor(private _constactService: ContactService) {}
+  constructor(private _contactService: ContactService) {}
 
   getCollectionContact() {
-    this._constactService.getCollections().subscribe(data => {
+    this._contactService.getCollections().subscribe(data => {
       this.collections = data;
     });
   }

@@ -1,15 +1,15 @@
-import { Directive, ElementRef, Input, HostListener } from '@angular/core';
+import { Directive, ElementRef, HostListener } from '@angular/core';
 
 const ClickingBackColor = '#eee';
 
 @Directive({
   // tslint:disable-next-line:directive-selector
-  selector: '[btnClickStyle]'
+  selector: '[appBtnClickStyle]'
 })
 export class BtnClickDirective {
   private el: HTMLElement;
-  private timer: any;
-  private animating: boolean =false;
+  private timer: NodeJS.Timeout|undefined = undefined;
+  private animating =false;
   constructor(el: ElementRef) {
     this.el = el.nativeElement;
     this.el.style.transition = 'background-color .2s ease-out';
@@ -31,5 +31,5 @@ export class BtnClickDirective {
 
 interface HTMLElement {
   prevBackColor: string;
-  style: any;
+  style: CSSStyleDeclaration;
 }

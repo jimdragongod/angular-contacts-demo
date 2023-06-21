@@ -2,7 +2,9 @@ import { Injectable } from '@angular/core';
 
 @Injectable()
 export class UtilService {
-  constructor() {}
+  constructor() {
+    console.info("UtilService constructor()");
+  }
 
   // 检查手机号码的合法性
   checkPhoneNum(str: string) {

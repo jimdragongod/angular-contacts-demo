@@ -21,6 +21,7 @@ import {Contact} from '../shared/contact';
 
 const FakeContactService = {
   getContactById(id: string): Observable<Array<Contact>> {
+    console.info(`id: ${id}`);
     return of([TEST_DATA]);
   }
 };

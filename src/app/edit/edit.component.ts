@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { ContactService } from '../shared/contact.service';
@@ -11,10 +11,10 @@ import {Contact} from '../shared/contact';
   styleUrls: ['./edit.component.css']
 })
 export class EditComponent implements OnInit {
-  isAdd: boolean = false;
-  operateTitle: string = "";
-  editId: string = "";
-  contacts: any = {};
+  isAdd = false;
+  operateTitle = "";
+  editId = "";
+  contacts: Array<Contact> = [];
   contact: Contact  =  Contact.DUMMY_INSTANCE;
   isName = false;
   isPhoneNum = false;
@@ -84,7 +84,8 @@ export class EditComponent implements OnInit {
   }
 
   addContact() {
-    const newContact = {
+    const newContact:Contact = {
+      id: -1,
       name: this.contact.name,
       telNum: this.contact.telNum,
       address: this.contact.address,
@@ -97,8 +98,8 @@ export class EditComponent implements OnInit {
   }
 
   editContact() {
-    const editContact = {
-      id: this.editId,
+    const editContact:Contact = {
+      id: parseInt(this.editId),
       name: this.contact.name,
       telNum: this.contact.telNum,
       address: this.contact.address,
@@ -110,7 +111,7 @@ export class EditComponent implements OnInit {
     this._router.navigate(['/list', this.editId]);
   }
 
-  cancleOperate() {
+  cancelOperation() {
     this._location.back();
   }
 
