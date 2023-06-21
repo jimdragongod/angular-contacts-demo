@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ContactService } from '../shared/contact.service';
 
@@ -30,7 +30,7 @@ describe('DetailComponent', () => {
   let fixture: ComponentFixture<DetailComponent>;
   // let spy: any;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [
         DetailComponent,
