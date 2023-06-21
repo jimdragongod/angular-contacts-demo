@@ -1,5 +1,5 @@
 export class Contact {
- constructor(public id: number, // 1
+    constructor(public id: number, // 1
                 public name: string, // "张三"
                 public telNum: string, // "18900001001"
                 public address: string,// "广东省深圳市"
@@ -8,6 +8,6 @@ export class Contact {
                 public collection: number) { // 0 or 1
     }
 
-    public static DUMMY_INSTANCE: Contact  = new Contact(-1,"","","","","",0);
+    public static DUMMY_INSTANCE: Contact = new Contact(-1, '', '', '', '', '', 0);
 
 }

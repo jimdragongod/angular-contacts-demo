@@ -1,10 +1,10 @@
 <app-my-header title="我的收藏"></app-my-header>
 <h3 *ngIf="collections.length === 0" class="no-collection">没有收藏</h3>
 <ul class="my-collection">
-  <li *ngFor="let collection of collections">
-    <a id="contactId_{{ collection.id }}" [routerLink]="['/list', collection.id]">
-      <label for="contactId_{{ collection.id }}">{{ collection.name }}</label><span>{{ collection.telNum | phone }}</span>
-    </a>
-  </li>
+    <li *ngFor="let collection of collections">
+        <a id="contactId_{{ collection.id }}" [routerLink]="['/list', collection.id]">
+            <label for="contactId_{{ collection.id }}">{{ collection.name }}</label><span>{{ collection.telNum | phone }}</span>
+        </a>
+    </li>
 </ul>
 <app-my-footer></app-my-footer>

@@ -1,20 +1,21 @@
-import { Component, OnInit } from '@angular/core';
-import { Location } from '@angular/common';
+import {Component, OnInit} from '@angular/core';
+import {Location} from '@angular/common';
 
 @Component({
-  // tslint:disable-next-line:component-selector
-  selector: 'app-my-footer',
-  templateUrl: './footer.component.html',
-  styleUrls: ['./footer.component.css']
+    // tslint:disable-next-line:component-selector
+    selector: 'app-my-footer',
+    templateUrl: './footer.component.html',
+    styleUrls: ['./footer.component.css']
 })
 export class FooterComponent implements OnInit {
-  isListPage = true;
+    isListPage = true;
 
-  constructor(private _location: Location) {}
+    constructor(private _location: Location) {
+    }
 
-  ngOnInit() {
-    this.isListPage =
-      !this._location.path() ||
-      this._location.path().indexOf('/list') > -1;
-  }
+    ngOnInit() {
+        this.isListPage =
+            !this._location.path() ||
+            this._location.path().indexOf('/list') > -1;
+    }
 }
