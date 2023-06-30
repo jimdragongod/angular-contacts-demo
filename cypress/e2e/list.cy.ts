@@ -7,7 +7,7 @@ describe('contact list', function () {
     it('test ListComponent', function () {
         // 打开网页
         // browser.get('/list');
-        cy.visit('/list')
+        cy.visit('/list');
 
         //  const contactList = element.all(by.css('.list li a'));
         const contactListChainable =  cy.get('.list li a');

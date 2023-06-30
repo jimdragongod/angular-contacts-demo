@@ -9,8 +9,10 @@ export class AngularContactsDemoPage {
     return cy.visit('/');
   }
 
-  getParagraphText() {
-    // return element(by.css('app-root h1')).getText();
-    return cy.get('app-root h1');
+  // getParagraphText() {
+  //   return element(by.css('app-root h3')).getText();
+  // }
+  getParagraph() {
+    return cy.get('app-root h3');
   }
 }

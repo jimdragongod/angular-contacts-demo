@@ -20,8 +20,11 @@ describe('angular-contacts-demo App', () => {
   /*
   * Cypress
    */
-  // it('should display message saying app works', () => {
-  //   page.navigateTo();
-  //   expect(page.getParagraphText()).match('app works!');
-  // });
+  it('should display message saying 所有联系人', () => {
+    page.navigateTo();
+    page.getParagraph().then((jqElement) => {
+      expect(jqElement).to.have.text('所有联系人');
+    });
+  });
+
 });
